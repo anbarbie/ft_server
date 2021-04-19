@@ -32,6 +32,18 @@ apt install -y php7.3-fpm php7.3-mysql
 service php7.3-fpm start
 
 #Wordpress
+apt install -y wget
+cd /tmp/
+wget -c https://wordpress.org/latest.tar.gz
+tar -xvzf /tmp/latest.tar.gz
+mv wordpress/ /var/www/mytest/
 
+#PHPmyadmin
+apt install -y php-json php-mbstring
+mkdir /var/www/mytest/phpmyadmin
+#wget https://files.phpmyadmin.net/phpMyAdmin/5.1.0/phpMyAdmin-5.1.0-all-languages.tar.gz
+#tar -zxzf phpMyAdmin-5.1.0-all-langages.tar.gz --strip-components 1 -C /var/www/mytest/phpmyadmin
+#mv /tmp/config.inc.php /var/www/mytest/phpmyadmin/config.inc.php
 
-service nginx start
+#service nginx start
+
