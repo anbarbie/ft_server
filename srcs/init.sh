@@ -41,6 +41,7 @@ cd /tmp/
 wget -c https://wordpress.org/latest.tar.gz
 tar -xzf /tmp/latest.tar.gz -C /var/www/mytest/
 rm latest.tar.gz
+mv /tmp/wp-config.php /var/www/mytest/wordpress/
 
 #PHPmyadmin
 apt install -y php-json php-mbstring
