@@ -1,5 +1,6 @@
 apt -y update
 apt -y upgrade
+apt -y install wget
 
 #nginx
 apt install -y nginx
@@ -26,24 +27,31 @@ mv mytest.key /etc/ssl/private/
 #SQL
 apt install -y mariadb-server
 service mysql start
+echo "create database wordpress;" | mysql -u root
+echo "grant all privileges on wordpress.* to 'root'@'localhost' with grant option;" | mysql -u root
+echo "update mysql.user set plugin='mysql_native_password' where user='root';" | mysql -u root
+echo "flush privileges;" | mysql -u root
 
 #Php 
-apt install -y php7.3-fpm php7.3-mysql
+apt install -y php7.3-fpm php7.3-mysql php-xml
 service php7.3-fpm start
 
 #Wordpress
-apt install -y wget
 cd /tmp/
 wget -c https://wordpress.org/latest.tar.gz
-tar -xvzf /tmp/latest.tar.gz
-mv wordpress/ /var/www/mytest/
+tar -xzf /tmp/latest.tar.gz -C /var/www/mytest/
+rm latest.tar.gz
 
 #PHPmyadmin
 apt install -y php-json php-mbstring
 mkdir /var/www/mytest/phpmyadmin
-#wget https://files.phpmyadmin.net/phpMyAdmin/5.1.0/phpMyAdmin-5.1.0-all-languages.tar.gz
-#tar -zxzf phpMyAdmin-5.1.0-all-langages.tar.gz --strip-components 1 -C /var/www/mytest/phpmyadmin
-#mv /tmp/config.inc.php /var/www/mytest/phpmyadmin/config.inc.php
+wget https://files.phpmyadmin.net/phpMyAdmin/5.1.0/phpMyAdmin-5.1.0-all-languages.tar.gz
+tar -xvf phpMyAdmin-5.1.0-all-languages.tar.gz --strip-components 1 -C /var/www/mytest/phpmyadmin
+mv /tmp/config.inc.php /var/www/mytest/phpmyadmin/config.inc.php
 
-#service nginx start
+#Access management
+chown -R $USER:$USER /var/www/*
+chmod -R 755 /var/www/*
+
+service nginx start
 
