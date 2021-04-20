@@ -5,9 +5,9 @@ apt -y install wget
 #nginx
 apt install -y nginx
 mkdir -p /var/www/mytest/
-
 mv /tmp/mytest.conf /etc/nginx/sites-available/
 rm /etc/nginx/sites-enabled/default
+rm /etc/nginx/sites-available/default
 ln -s /etc/nginx/sites-available/mytest.conf /etc/nginx/sites-enabled/
 
 #SSL
@@ -54,5 +54,9 @@ mv /tmp/config.inc.php /var/www/mytest/phpmyadmin/config.inc.php
 chown -R $USER:$USER /var/www/*
 chmod -R 755 /var/www/*
 
-service nginx start
+#autoindex check
+if [ "$AUTOINDEX" = "off" ]; then
+	sed -i "s/autoindex on/autoindex off/g" /etc/nginx/sites-available/mytest.conf
+fi
 
+service nginx start
