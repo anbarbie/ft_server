@@ -1,2 +1,2 @@
-sed -i "s/autindex on;/autoindex off;/g" /etc/nginx/sites-available/nginx.config
+sed -i "s/autoindex on;/autoindex off;/g" /etc/nginx/sites-available/mytest.conf
 service nginx restart
