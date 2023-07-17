@@ -1,5 +1,5 @@
 # ft_server
-This repository contains scripts and configuration files for setting up a web server environment with Nginx, SSL, MariaDB, PHP, WordPress, and phpMyAdmin.
+This project contains scripts and configuration files for setting up a web server environment with Nginx, SSL, MariaDB, PHP, WordPress, and phpMyAdmin.
 ## Prerequisites
 
 Before getting started, ensure that you have the following dependencies installed:
