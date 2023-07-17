@@ -11,5 +11,8 @@ Before getting started, ensure that you have the following dependencies installe
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone <repository-url>
-   cd <repository-directory>
+   git clone https://github.com/anbarbie/ft_server.git
+   cd ft_server
+   docker build -t ft_server .
+   docker run -p 80:80 -p 443:443 -d ft_server
+   ```
